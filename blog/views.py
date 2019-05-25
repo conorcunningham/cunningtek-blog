@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth.models import User
+from django.urls import reverse_lazy
+from django.contrib.messages.views import SuccessMessageMixin
+from users.models import CustomUser
 from django.views.generic import (
     ListView,
     DetailView,
@@ -9,6 +11,7 @@ from django.views.generic import (
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from . models import Post
+from . forms import NewPostForm
 
 
 def home(request):
@@ -33,7 +36,7 @@ class UserPostListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        user = get_object_or_404(CustomUser, username=self.kwargs.get('username'))
         return Post.objects.filter(author=user).order_by('-date_posted')
 
 
@@ -41,9 +44,12 @@ class PostDetailView(DetailView):
     model = Post
 
 
-class PostCreateView(LoginRequiredMixin, CreateView):
-    model = Post
-    fields = ['title', 'content']
+class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+
+    form_class = NewPostForm
+    success_url = reverse_lazy('blog-home')
+    success_message = "Your post has been submitted"
+    template_name = 'blog/post_form.html'
 
     def form_valid(self, form):
         form.instance.author = self.request.user

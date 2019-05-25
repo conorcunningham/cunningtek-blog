@@ -25,7 +25,7 @@ SECRET_KEY = '$chu9j9)!j7hax#@c#iq^r$=w33ytff&8hd3cgw-l)t1+(&74w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,10 +37,37 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # my apps
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
-    'crispy_forms'
+
+    # Third-party
+    'crispy_forms',
+    'allauth',
+    'allauth.account',
+    'martor',
 ]
+
+# Django-Allauth Config
+LOGIN_REDIRECT_URL = 'blog-home'
+ACCOUNT_LOGOUT_REDIRECT = 'blog-home'
+ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
+
+# use email as username and make email mandatory
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+SITE_ID = 1
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,7 +84,7 @@ ROOT_URLCONF = 'cunningtek_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'blog/templates'), os.path.join(BASE_DIR, 'users/templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,6 +129,56 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Global martor settings
+# Input: string boolean, `true/false`
+MARTOR_ENABLE_CONFIGS = {
+    'imgur': 'true',     # to enable/disable imgur/custom uploader.
+    'mention': 'false',  # to enable/disable mention
+    'jquery': 'true',    # to include/revoke jquery (require for admin default django)
+    'living': 'false',   # to enable/disable live updates in preview
+}
+
+# To setup the martor editor with label or not (default is False)
+MARTOR_ENABLE_LABEL = False
+
+# Imgur API Keys
+MARTOR_IMGUR_CLIENT_ID = '66adbe19d8d61b6'
+MARTOR_IMGUR_API_KEY = '1b130bf3bd8c2dc711e2903e6a32c7b389c27347'
+
+# Safe Mode
+MARTOR_MARKDOWN_SAFE_MODE = True  # default
+
+# Markdownify
+MARTOR_MARKDOWNIFY_FUNCTION = 'martor.utils.markdownify'  # default
+MARTOR_MARKDOWNIFY_URL = '/martor/markdownify/'  # default
+
+# Markdown extensions (default)
+MARTOR_MARKDOWN_EXTENSIONS = [
+    'markdown.extensions.extra',
+    'markdown.extensions.nl2br',
+    'markdown.extensions.smarty',
+    'markdown.extensions.fenced_code',
+
+    # Custom markdown extensions.
+    'martor.extensions.urlize',
+    'martor.extensions.del_ins',    # ~~strikethrough~~ and ++underscores++
+    'martor.extensions.mention',    # to parse markdown mention
+    'martor.extensions.emoji',      # to parse markdown emoji
+    'martor.extensions.mdx_video',  # to parse embed/iframe video
+]
+
+# Markdown Extensions Configs
+MARTOR_MARKDOWN_EXTENSION_CONFIGS = {}
+
+# Markdown urls
+MARTOR_UPLOAD_URL = '/martor/uploader/'  # default
+MARTOR_SEARCH_USERS_URL = '/martor/search-user/'  # default
+
+# Markdown Extensions
+# MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://www.webfx.com/tools/emoji-cheat-sheet/graphics/emojis/' # from webfx
+MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/emoji/'  # default from github
+# MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://python.web.id/author/' # please change this
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -124,5 +201,18 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = 'blog-home'
 LOGIN_URL = 'login'
+AUTH_USER_MODEL = "users.CustomUser"
+
+# from Will Vincent's book
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.1/howto/static-files/
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+LOGOUT_REDIRECT_URL = 'blog-home'
