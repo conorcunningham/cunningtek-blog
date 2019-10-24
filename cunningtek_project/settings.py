@@ -19,13 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '$chu9j9)!j7hax#@c#iq^r$=w33ytff&8hd3cgw-l)t1+(&74w'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = os.environ.get('SECRET', default='imalittledebugteapotlovelyandwarm')
+DEBUG = os.environ.get('ENV', default='0')
+PRODUCTION = True if not DEBUG else False
+ALLOWED_HOSTS = ['localhost', '127.0.0.1'] if DEBUG else ['blog.cunningtek.com']
 
 
 # Application definition
@@ -135,7 +132,8 @@ MARTOR_ENABLE_CONFIGS = {
     'imgur': 'true',     # to enable/disable imgur/custom uploader.
     'mention': 'false',  # to enable/disable mention
     'jquery': 'true',    # to include/revoke jquery (require for admin default django)
-    'living': 'false',   # to enable/disable live updates in preview
+    'living': 'true',   # to enable/disable live updates in preview
+    'spellcheck': 'false',  # need this to make project start
 }
 
 # To setup the martor editor with label or not (default is False)
@@ -176,7 +174,8 @@ MARTOR_SEARCH_USERS_URL = '/martor/search-user/'  # default
 
 # Markdown Extensions
 # MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://www.webfx.com/tools/emoji-cheat-sheet/graphics/emojis/' # from webfx
-MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/emoji/'  # default from github
+# MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/emoji/'  # default from github
+MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://gist.github.com/rxaviers/7360908'  # default from github
 # MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://python.web.id/author/' # please change this
 
 
@@ -193,6 +192,22 @@ USE_L10N = True
 
 USE_TZ = True
 
+# # SSL Configuration
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#
+# # production SSL and HSTS settings
+# if PRODUCTION:
+#     SECURE_BROWSER_XSS_FILTER = True
+#     X_FRAME_OPTIONS = 'DENY'
+#     SECURE_SSL_REDIRECT = True
+#     SECURE_HSTS_SECONDS = 3600
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#     SECURE_HSTS_PRELOAD = True
+#     SECURE_CONTENT_TYPE_NOSNIFF = True
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
@@ -203,6 +218,8 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'login'
 AUTH_USER_MODEL = "users.CustomUser"
+ACCOUNT_ADAPTER = 'users.account_adapter.NoNewUsersAccountAdapter'
+
 
 # from Will Vincent's book
 # Static files (CSS, JavaScript, Images)

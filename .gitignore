@@ -8,4 +8,10 @@ media
 django-markdown-editor
 requirements.txtpip
 venv
-db.sqlite3 
+db.sqlite3
+idea
+pycache
+~$case1.xlsx
+~case1.xlsx
+temp
+temp.py
