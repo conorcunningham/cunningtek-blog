@@ -1,5 +1,4 @@
 .idea
-db.sqlite3
 .DS_Store
 __pycache__
 static
@@ -8,7 +7,6 @@ media
 django-markdown-editor
 requirements.txtpip
 venv
-db.sqlite3
 idea
 pycache
 ~$case1.xlsx
