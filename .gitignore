@@ -1,8 +1,6 @@
 .idea
 .DS_Store
 __pycache__
-static
-staticfiles
 media
 django-markdown-editor
 requirements.txtpip
