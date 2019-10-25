@@ -1,0 +1,1 @@
+web: gunicorn cunningtek_project.wsgi > Procfile
