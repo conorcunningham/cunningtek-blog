@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'storages',
 
     # my apps
     'blog.apps.BlogConfig',
