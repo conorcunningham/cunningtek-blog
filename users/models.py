@@ -14,7 +14,7 @@ class CustomUser(AbstractUser):
         if img.height > 300 or img.width > 300:
             output_size = (300, 300)
             img.thumbnail(output_size)
-            img.save(self.image)         # removed .path from image
+            img.save(self.image.path)         # removed .path from image
 
     def __str__(self):
         return f"{self.username}'s Profile"
