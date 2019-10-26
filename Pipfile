@@ -26,6 +26,8 @@ Pillow = "==6.2.1"
 gunicorn = "*"
 whitenoise = "*"
 psycopg2-binary = "*"
+django-storages = "*"
+boto3 = "*"
 
 [requires]
 python_version = "3.7"
