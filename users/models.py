@@ -17,4 +17,4 @@ class CustomUser(AbstractUser):
             img.save(self.image.path)
 
     def __str__(self):
-        return f"{self.username} Profile"
+        return f"{self.username}'s Profile"

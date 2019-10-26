@@ -20,8 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 SECRET_KEY = os.environ.get('SECRET', default='imalittledebugteapotlovelyandwarm')
-DEBUG = int(os.environ.get('DEBUG', default='0'))
-#DEBUG = True
+#DEBUG = int(os.environ.get('DEBUG', default='0'))
+DEBUG = True
 PRODUCTION = True if not DEBUG else False
 ALLOWED_HOSTS = ['*'] if DEBUG else ['blog.conorcunningham.net']
 
