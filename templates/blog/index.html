@@ -1,6 +1,16 @@
 {% extends '_base.html' %}
 {% load martortags %}
 {% block content %}
+  <article class="media content-section">
+    <img class="rounded-circle article-img" src="https://eclinic-web-s3bucket.s3.amazonaws.com/profile_pics/toppmeis_3.jpg" alt="author-pic">
+
+    <div class="media-body">
+      <h2>Hello and welcome!</h2>
+      <p class="article-content">My name is Conor and I live in Oslo, Norway. Here you will find posts that mainly deal
+        with Python, data network engineering and birds. I hope you find something of interest to you.</p>
+    </div>
+  </article>
+
   {% for post in posts %}
     <article class="media content-section">
       <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="author-pic">
