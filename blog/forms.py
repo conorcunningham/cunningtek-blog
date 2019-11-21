@@ -4,8 +4,8 @@ from martor.fields import MartorFormField
 
 
 class NewPostForm(forms.ModelForm):
-    content = MartorFormField(max_length=3000,
-                              help_text='Maximum length is 3000 characters')
+    content = MartorFormField(max_length=35000,
+                              help_text='Maximum length is 35000 characters')
 
     class Meta:
         model = Post
