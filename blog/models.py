@@ -6,7 +6,7 @@ from martor.models import MartorField
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = MartorField()
+    content = MartorField(max_length=35000)
     date_posted = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)

@@ -115,10 +115,10 @@ WSGI_APPLICATION = 'cunningtek_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DATABASE', default='blog'),
+        'NAME': os.environ.get('DATABASE', default='postgres'),
         'USER': os.environ.get('DBUSER', default='postgres'),
         'PASSWORD': os.environ.get('DBPASSWORD', default='postgres'),
-        'HOST': os.environ.get('DBHOST', default='localhost'),
+        'HOST': os.environ.get('DBHOST', default='blog-db'),
         # 'OPTIONS': {'sslmode': 'require'},
         'PORT': 5432
     }

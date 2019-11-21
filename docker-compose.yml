@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  blog:
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8000
+    # command: gunicorn eclinic_project.wsgi -b 0.0.0.0:8000
+    volumes:
+      - .:/code
+    ports:
+      - 8000:8000
+    depends_on:
+      - blog-db
+    environment:
+      - SECRET=T7QjHfCFvl+P1dSN1lwPZFmTuOLw3LB7ldpm8fXCYd8=
+      - ENV=dev
+      - DATABASE=postgres
+      - DBUSER=postgres
+      - DBPASSWORD=postgres
+      - DBHOST=blog-db
+
+  blog-db:
+    image: postgres:11
+    volumes:
+      - blog_data:/var/lib/postgresql/data/
+    ports:
+      - 5432:5432
+
+volumes:
+  blog_data:
+
+
