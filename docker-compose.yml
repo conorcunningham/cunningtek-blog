@@ -18,6 +18,7 @@ services:
       - DBUSER=postgres
       - DBPASSWORD=postgres
       - DBHOST=blog-db
+      - DEBUG=1
 
   blog-db:
     image: postgres:11
