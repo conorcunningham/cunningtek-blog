@@ -1,5 +1,4 @@
 {% load static %}
-{% load martortags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -7,17 +6,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <!-- Martor -->
-  <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
-  <link href="{% static 'plugins/css/semantic.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
-  <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
-  <link href="{% static 'martor/css/martor.min.css' %}" type="text/css" media="all" rel="stylesheet"/>
+{#  <link href="{% static 'plugins/css/ace.min.css' %}" type="text/css" media="all" rel="stylesheet"/>#}
+{#  <link href="{% static 'plugins/css/semantic.min.css' %}" type="text/css" media="all" rel="stylesheet"/>#}
+{#  <link href="{% static 'plugins/css/resizable.min.css' %}" type="text/css" media="all" rel="stylesheet"/>#}
+{#  <link href="{% static 'martor/css/martor.min.css' %}" type="text/css" media="all" rel="stylesheet"/>#}
   <!-- <code> tag styling -->
   <link rel="stylesheet"
         href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/default.min.css">
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <!-- My CSS -->
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+
 
 
   {% if title %}
@@ -69,7 +71,8 @@
         <h3>Useful Links</h3>
         <p class='text-muted'>Some fun links</p>
         <ul class="list-group">
-          <li class="list-group-item list-group-item-light"><a href="https://www.oslobirder.blogspot.no">Oslo Birder</a></li>
+          <li class="list-group-item list-group-item-light"><a href="https://www.oslobirder.blogspot.no">Oslo Birder</a>
+          </li>
           <li class="list-group-item list-group-item-light">Announcements</li>
           <li class="list-group-item list-group-item-light">Calendars</li>
           <li class="list-group-item list-group-item-light">etc</li>
@@ -82,22 +85,26 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script type="text/javascript" src="{% static 'plugins/js/jquery.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
 <!-- JS to style <code> tags -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
 <!--suppress JSUnresolvedVariable -->
 <script>hljs.initHighlightingOnLoad();</script>
 <!-- Martor JS -->
-<script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>
-<script type="text/javascript" src="{% static 'plugins/js/semantic.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>
-<script type="text/javascript" src="{% static 'plugins/js/ext-language_tools.js' %}"></script>
-<script type="text/javascript" src="{% static 'plugins/js/theme-github.js' %}"></script>
-<script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'plugins/js/resizable.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'martor/js/martor.min.js' %}"></script>
+{#<script type="text/javascript" src="{% static 'plugins/js/ace.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'plugins/js/semantic.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'plugins/js/mode-markdown.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'plugins/js/ext-language_tools.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'plugins/js/theme-github.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'plugins/js/highlight.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'plugins/js/resizable.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'plugins/js/emojis.min.js' %}"></script>#}
+{#<script type="text/javascript" src="{% static 'martor/js/martor.min.js' %}"></script>#}
 {% block javascript %}{% endblock %}
 </body>
 </html>
