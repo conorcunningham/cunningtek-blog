@@ -19,8 +19,5 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
-    # def get_message_as_markdown(self):
-    #     return self.content
-
     def get_message_as_markdown(self):
         return mark_safe(markdown(self.content, safe_mode='escape'))

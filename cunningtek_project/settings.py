@@ -141,59 +141,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Global martor settings
-# Input: string boolean, `true/false`
-MARTOR_ENABLE_CONFIGS = {
-    'imgur': 'true',     # to enable/disable imgur/custom uploader.
-    'mention': 'false',  # to enable/disable mention
-    'jquery': 'true',    # to include/revoke jquery (require for admin default django)
-    'living': 'true',   # to enable/disable live updates in preview
-    'spellcheck': 'false',  # need this to make project start
-}
-
-# To setup the martor editor with label or not (default is False)
-MARTOR_ENABLE_LABEL = False
-
-# Imgur API Keys
-MARTOR_IMGUR_CLIENT_ID = '66adbe19d8d61b6'
-MARTOR_IMGUR_API_KEY = '1b130bf3bd8c2dc711e2903e6a32c7b389c27347'
-
-# Safe Mode
-MARTOR_MARKDOWN_SAFE_MODE = True  # default
-
-# Markdownify
-MARTOR_MARKDOWNIFY_FUNCTION = 'martor.utils.markdownify'  # default
-MARTOR_MARKDOWNIFY_URL = '/martor/markdownify/'  # default
-
-# Markdown extensions (default)
-MARTOR_MARKDOWN_EXTENSIONS = [
-    'markdown.extensions.extra',
-    'markdown.extensions.nl2br',
-    'markdown.extensions.smarty',
-    'markdown.extensions.fenced_code',
-
-    # Custom markdown extensions.
-    'martor.extensions.urlize',
-    'martor.extensions.del_ins',    # ~~strikethrough~~ and ++underscores++
-    'martor.extensions.mention',    # to parse markdown mention
-    'martor.extensions.emoji',      # to parse markdown emoji
-    'martor.extensions.mdx_video',  # to parse embed/iframe video
-]
-
-# Markdown Extensions Configs
-MARTOR_MARKDOWN_EXTENSION_CONFIGS = {}
-
-# Markdown urls
-MARTOR_UPLOAD_URL = '/martor/uploader/'  # default
-MARTOR_SEARCH_USERS_URL = '/martor/search-user/'  # default
-
-# Markdown Extensions
-# MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://www.webfx.com/tools/emoji-cheat-sheet/graphics/emojis/' # from webfx
-# MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://github.githubassets.com/images/icons/emoji/'  # default from github
-MARTOR_MARKDOWN_BASE_EMOJI_URL = 'https://gist.github.com/rxaviers/7360908'  # default from github
-# MARTOR_MARKDOWN_BASE_MENTION_URL = 'https://python.web.id/author/' # please change this
-
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -206,6 +153,9 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+# cookies
+SESSION_COOKIE_HTTPONLY = False
 
 # SSL Configuration
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

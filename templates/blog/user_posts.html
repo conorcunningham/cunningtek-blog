@@ -1,5 +1,4 @@
 {% extends '_base.html' %}
-{% load martortags %}
 {% block content %}
   <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
   {% for post in posts %}
@@ -11,7 +10,7 @@
           <small class="text-muted">{{ post.date_posted | date:"dS F, Y" }}</small>
         </div>
         <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.content | safe_markdown}}</p>
+        <p class="article-content">{{ post.get_message_as_markdown}}</p>
       </div>
     </article>
   {% endfor %}
