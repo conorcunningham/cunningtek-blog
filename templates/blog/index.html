@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load markdown_extras %}
 {% block content %}
   <article class="media content-section">
     <img class="rounded-circle article-img" src="https://eclinic-web-s3bucket.s3.amazonaws.com/profile_pics/toppmeis_3.jpg" alt="author-pic">
@@ -19,7 +20,7 @@
           <small class="text-muted">{{ post.date_posted | date:"dS F, Y" }}</small>
         </div>
         <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.get_message_as_markdown }}</p>
+        <p class="article-content">{{ post.get_message_as_markdown | markdown | safe}}</p>
       </div>
     </article>
   {% endfor %}

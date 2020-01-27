@@ -29,6 +29,7 @@ psycopg2-binary = "*"
 django-storages = "*"
 boto3 = "*"
 httpx = "*"
+bleach = "*"
 
 [requires]
 python_version = "3.7"

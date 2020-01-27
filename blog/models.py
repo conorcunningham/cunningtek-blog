@@ -4,6 +4,7 @@ from django.urls import reverse
 from martor.models import MartorField
 from django.utils.html import mark_safe
 from markdown import markdown
+import bleach
 
 
 class Post(models.Model):
@@ -20,4 +21,5 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
     def get_message_as_markdown(self):
-        return mark_safe(markdown(self.content, safe_mode='escape'))
+        return bleach.clean(self.content)
+        #return mark_safe(markdown(self.content, safe_mode='escape'))

@@ -5,7 +5,8 @@ import sys
 file = {"content": open(sys.argv[0], "rb")}
 user = 'conor@conor.com'
 pwd = 'aphextwin21'
-login_data = {"username": user, "password": pwd}
+data = {"username": "conor@conorcunningham.net", "password": "UHiavJs6NBHrD8KpELP^GND2;y7*c@XL"}
+
 URL = 'http://localhost:8000/'
 URL = 'https://blog.conorcunningham.net/'
 
@@ -21,17 +22,19 @@ with requests.Session() as session:
     csrf_token = login.cookies['csrftoken']
     print(f"CSRF Token: {csrf_token}")
 
-    login_data['csrfmiddlewaretoken'] = csrf_token
+    data['csrfmiddlewaretoken'] = csrf_token
 
+    session.headers.update({'referer': "https://blog.conorcunningham.net/accounts/login/"})
+    session.headers.update({'user-agent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0"})
     post = session.post(
         LOGIN_URL,
-        data=login_data,
-        auth=(user, pwd),
+        data=data,
+        auth=("conor@conorcunningham.net", "UHiavJs6NBHrD8KpELP^GND2;y7*c@XL")
     )
 
     # get = session.get("http://localhost:8000/post/new/")
     print(f"Login Status Code: {post.status_code}")
-    print(post.cookies)
+    # print(post.text)
     print(f"Session Cookie {session.cookies['sessionid']}")
 
     csrf_token = session.cookies['csrftoken']
