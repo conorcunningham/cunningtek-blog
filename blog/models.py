@@ -6,6 +6,56 @@ from django.utils.html import mark_safe
 from markdown import markdown
 import bleach
 
+ALLOWED_TAGS = [
+    'a',
+    'abbr',
+    'acronym',
+    'b',
+    'blockquote',
+    'br',
+    'code',
+    'em',
+    'i',
+    'li',
+    'ol',
+    'strong',
+    'ul',
+    'p',
+    'table',
+    'tbody',
+    'thead',
+    'tr',
+    'td',
+    'th',
+    'div',
+    'span',
+    'hr',
+    'h1',
+    'h2',
+    'h3',
+    'h4',
+    'h5',
+    'h6',
+    'pre',
+    'int:pk',
+    'module'
+    # Update doc/user/markdown.rst if you change this!
+]
+
+ALLOWED_ATTRIBUTES = {
+    'a': ['href', 'title', 'class'],
+    'abbr': ['title'],
+    'acronym': ['title'],
+    'table': ['width'],
+    'td': ['width', 'align'],
+    'div': ['class'],
+    'p': ['class'],
+    'span': ['class', 'title'],
+    # Update doc/user/markdown.rst if you change this!
+}
+
+ALLOWED_PROTOCOLS = ['http', 'https', 'mailto', 'tel']
+
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
@@ -21,5 +71,11 @@ class Post(models.Model):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
     def get_message_as_markdown(self):
-        return bleach.clean(self.content)
+        #return markdown(self.content)
+        return bleach.clean(
+            self.content,
+            tags=ALLOWED_TAGS,
+            attributes=ALLOWED_ATTRIBUTES,
+            protocols=ALLOWED_PROTOCOLS,
+        )
         #return mark_safe(markdown(self.content, safe_mode='escape'))
