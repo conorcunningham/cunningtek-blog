@@ -2,25 +2,26 @@
 {% load markdown_extras %}
 {% block content %}
   <article class="media content-section">
-    <img class="rounded-circle article-img" src="https://eclinic-web-s3bucket.s3.amazonaws.com/profile_pics/toppmeis_3.jpg" alt="author-pic">
-
+    <img class="rounded-circle article-img"
+         src="https://eclinic-web-s3bucket.s3.amazonaws.com/profile_pics/toppmeis_3.jpg" alt="author-pic">
     <div class="media-body">
       <h2>Hello and welcome</h2>
       <p class="article-content">My name is Conor and I live in Oslo, Norway. Here you will find posts that mainly deal
         with Python, data network engineering and birds. I hope you find something of interest to you.</p>
     </div>
   </article>
-
   {% for post in posts %}
-    <article class="media content-section">
-      <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="author-pic">
-      <div class="media-body">
+    <article class="content-section">
+      <div class="article-header">
+        <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="author-pic">
         <div class="article-metadata">
           <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author.username }}</a>
           <small class="text-muted">{{ post.date_posted | date:"dS F, Y" }}</small>
         </div>
+      </div>
+      <div class="media-body">
         <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.get_message_as_markdown | markdown | safe}}</p>
+        <p class="article-content">{{ post.get_message_as_markdown | markdown | safe }}</p>
       </div>
     </article>
   {% endfor %}
