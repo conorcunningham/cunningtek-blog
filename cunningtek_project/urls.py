@@ -19,8 +19,10 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views as user_views
+from blog.views import google
 
 urlpatterns = [
+    path('googled7c5cb564f623934.html', google, name='google'),
     path('superspacepenguins/', admin.site.urls),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),

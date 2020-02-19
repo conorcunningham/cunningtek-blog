@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
 from users.models import CustomUser
@@ -13,6 +14,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from . models import Post
 from . forms import NewPostForm
 
+
+
+
+
+
+def google(request):
+    html = "google-site-verification: googled7c5cb564f623934.html"
+    return HttpResponse(html)
 
 def home(request):
     context = {
