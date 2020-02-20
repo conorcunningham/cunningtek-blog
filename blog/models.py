@@ -72,16 +72,16 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'slug': self.slug})
 
-    def save(self, *args, **kwargs): # new
+    def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
     def get_message_as_markdown(self):
-
-        return bleach.clean(
-            self.content,
-            tags=ALLOWED_TAGS,
-            attributes=ALLOWED_ATTRIBUTES,
-            protocols=ALLOWED_PROTOCOLS,
-        )
+        return self.content
+        # return bleach.clean(
+        #     self.content,
+        #     tags=ALLOWED_TAGS,
+        #     attributes=ALLOWED_ATTRIBUTES,
+        #     protocols=ALLOWED_PROTOCOLS,
+        # )
