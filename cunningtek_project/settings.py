@@ -73,7 +73,9 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -123,6 +125,29 @@ DATABASES = {
         'PORT': 5432
     }
 }
+
+DUMMY_CACHE = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+PROD_CACHE = {
+    "default": {
+        "BACKEND": "redis_cache.RedisCache",
+        "LOCATION": "redis://172.17.0.1:6379",
+    },
+}
+# Cache time to live is 15 minutes.
+CACHE_TTL = 60 * 15
+CACHE_MIDDLEWARE_ALIAS = "default"
+CACHE_MIDDLEWARE_KEY_PREFIX = "blog"
+CACHE_MIDDLEWARE_SECONDS = 30
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+SESSION_CACHE_ALIAS = "default"
+
+# set the redis cache
+CACHES = PROD_CACHE if os.environ.get("ENV", default="dev") == "prod" else DUMMY_CACHE
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators

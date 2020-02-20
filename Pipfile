@@ -32,6 +32,7 @@ httpx = "*"
 bleach = "*"
 django-autoslug = "*"
 markdown2 = "*"
+django-redis-cache = "*"
 
 [requires]
 python_version = "3.8"
