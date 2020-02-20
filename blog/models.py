@@ -64,7 +64,7 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
-    slug = models.SlugField(null=True, )
+    slug = models.SlugField(null=True, unique=True)
 
     def __str__(self):
         return f"Title: {self.title}"
@@ -79,9 +79,9 @@ class Post(models.Model):
 
     def get_message_as_markdown(self):
 
-        return bleach.linkify(bleach.clean(
+        return bleach.clean(
             self.content,
             tags=ALLOWED_TAGS,
             attributes=ALLOWED_ATTRIBUTES,
             protocols=ALLOWED_PROTOCOLS,
-        ))
+        )
