@@ -1,16 +1,19 @@
 {% extends '_base.html' %}
+{% load markdown_extras %}
 {% block content %}
   <h1 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h1>
   {% for post in posts %}
-    <article class="media content-section">
-      <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="author-pic">
-      <div class="media-body">
+    <article class="content-section">
+      <div class="article-header">
+        <img class="rounded-circle article-img" src="{{ post.author.image.url }}" alt="author-pic">
         <div class="article-metadata">
           <a class="mr-2" href="{% url 'user-posts' post.author.username %}">{{ post.author.username }}</a>
           <small class="text-muted">{{ post.date_posted | date:"dS F, Y" }}</small>
         </div>
+      </div>
+      <div class="media-body">
         <h2><a class="article-title" href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
-        <p class="article-content">{{ post.get_message_as_markdown}}</p>
+        <p class="article-content">{{ post.get_message_as_markdown | markdown | safe }}</p>
       </div>
     </article>
   {% endfor %}
