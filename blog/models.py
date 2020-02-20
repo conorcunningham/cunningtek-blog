@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django.template.defaultfilters import slugify
 from martor.models import MartorField
 from django.utils.html import mark_safe
 from markdown import markdown
@@ -39,6 +40,7 @@ ALLOWED_TAGS = [
     'pre',
     'int:pk',
     'module'
+    '>'
     # Update doc/user/markdown.rst if you change this!
 ]
 
@@ -51,7 +53,6 @@ ALLOWED_ATTRIBUTES = {
     'div': ['class'],
     'p': ['class'],
     'span': ['class', 'title'],
-    # Update doc/user/markdown.rst if you change this!
 }
 
 ALLOWED_PROTOCOLS = ['http', 'https', 'mailto', 'tel']
@@ -63,6 +64,7 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
+    slug = models.SlugField(null=True, )
 
     def __str__(self):
         return f"Title: {self.title}"
@@ -70,12 +72,16 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
 
+    def save(self, *args, **kwargs): # new
+        if not self.slug:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
+
     def get_message_as_markdown(self):
-        #return markdown(self.content)
-        return bleach.clean(
+
+        return bleach.linkify(bleach.clean(
             self.content,
             tags=ALLOWED_TAGS,
             attributes=ALLOWED_ATTRIBUTES,
             protocols=ALLOWED_PROTOCOLS,
-        )
-        #return mark_safe(markdown(self.content, safe_mode='escape'))
+        ))

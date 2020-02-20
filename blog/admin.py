@@ -5,9 +5,10 @@ from . models import Post
 
 
 class PostAdmin(admin.ModelAdmin):
-    formfield_overrides = {
-        models.TextField: {'widget': AdminMartorWidget},
-    }
+    # formfield_overrides = {
+    #     models.TextField: {'widget': AdminMartorWidget},
+    # }
+    prepopulated_fields = {'slug': ('title',)}
 
 
 admin.site.register(Post)

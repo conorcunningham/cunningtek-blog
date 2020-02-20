@@ -30,6 +30,7 @@ django-storages = "*"
 boto3 = "*"
 httpx = "*"
 bleach = "*"
+django-autoslug = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3.8"
