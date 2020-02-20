@@ -64,13 +64,13 @@ class Post(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     last_modified = models.DateTimeField(auto_now=True)
     author = models.ForeignKey('users.CustomUser', on_delete=models.CASCADE)
-    slug = models.SlugField(null=True, unique=True)
+    slug = models.SlugField(null=False, unique=True)
 
     def __str__(self):
         return f"Title: {self.title}"
 
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('post-detail', kwargs={'slug': self.slug})
 
     def save(self, *args, **kwargs): # new
         if not self.slug:
