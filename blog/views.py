@@ -11,7 +11,7 @@ from django.views.generic import (
     DeleteView
 )
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from . models import Post
+from . models import Post, ViewingRecord
 from . forms import NewPostForm
 
 
@@ -51,6 +51,12 @@ class UserPostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+    # def get(self, request, *args, **kwargs):
+    #     ip = self.request.META['REMOTE_ADDR']
+    #     post = Post.objects.get(slug=self.kwargs.get("slug"))
+    #     ViewingRecord(post=post, source=ip).save()
+    #     return super().get(request, *args, **kwargs)
 
 
 class PostCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):

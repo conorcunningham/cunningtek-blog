@@ -134,7 +134,8 @@ DUMMY_CACHE = {
 
 PROD_CACHE = {
     "default": {
-        "BACKEND": "redis_cache.RedisCache",
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        # "BACKEND": "redis_cache.RedisCache",
         "LOCATION": "redis://172.17.0.1:6379",
     },
 }
@@ -143,7 +144,7 @@ CACHE_TTL = 60 * 15
 CACHE_MIDDLEWARE_ALIAS = "default"
 CACHE_MIDDLEWARE_KEY_PREFIX = "blog"
 CACHE_MIDDLEWARE_SECONDS = 30
-SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+# SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 SESSION_CACHE_ALIAS = "default"
 
 # set the redis cache

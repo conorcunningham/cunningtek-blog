@@ -85,3 +85,9 @@ class Post(models.Model):
         #     attributes=ALLOWED_ATTRIBUTES,
         #     protocols=ALLOWED_PROTOCOLS,
         # )
+
+
+class ViewingRecord(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    source = models.GenericIPAddressField()
+

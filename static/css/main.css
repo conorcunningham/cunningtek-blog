@@ -30,15 +30,19 @@ h1, h2, h3, h4, h5, h6 {
 .social-github:hover .outer-shape {
     fill: #333;
 }
-.social-github .outer-shape {
-    fill: #666;
+.social-github {
+    fill: #7fa6c4;
+    margin-left: 4px;
+
 }
 
 .social-instagram:hover .outer-shape {
     fill: #d73083;
 }
-.social-instagram .outer-shape {
-    fill: #666;
+.social-instagram  {
+    fill: #7fa6c4;
+    margin-left: 4px;
+
 }
 
 .social-linkedin:hover .outer-shape {
