@@ -14,12 +14,43 @@ h1, h2, h3, h4, h5, h6 {
     color: #444444;
 }
 
+.sidebar {
+    text-align: center;
+}
+
+.social-twitter:hover .outer-shape {
+    fill: #55ACEE;
+}
+
+.social-twitter {
+    fill: #7fa6c4;
+    margin-left: 4px;
+}
+
+.social-github:hover .outer-shape {
+    fill: #333;
+}
+.social-github .outer-shape {
+    fill: #666;
+}
+
+.social-instagram:hover .outer-shape {
+    fill: #d73083;
+}
+.social-instagram .outer-shape {
+    fill: #666;
+}
+
+.social-linkedin:hover .outer-shape {
+    fill: #0077B5;
+}
+
 pre {
     width: 100%;
     padding: 0;
-    margin: 0;
+    margin: 40px 0;
     overflow: auto;
-    overflow-x: scroll;
+    overflow-x: auto;
     overflow-y: hidden;
     font-family: "JetBrains Mono", monospace;
     font-size: 15px;
