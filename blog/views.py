@@ -15,13 +15,10 @@ from . models import Post, ViewingRecord
 from . forms import NewPostForm
 
 
-
-
-
-
 def google(request):
     html = "google-site-verification: googled7c5cb564f623934.html"
     return HttpResponse(html)
+
 
 def home(request):
     context = {

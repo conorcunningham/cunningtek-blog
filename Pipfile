@@ -33,6 +33,7 @@ bleach = "*"
 django-autoslug = "*"
 markdown2 = "*"
 django-redis-cache = "*"
+black = "*"
 
 [requires]
 python_version = "3.8"
