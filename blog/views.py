@@ -53,7 +53,11 @@ class PostDetailView(DetailView):
     model = Post
 
     def get(self, request, *args, **kwargs):
-        ip = self.request.META['REMOTE_ADDR']
+        if 'HTTP_X_FORWARDED_FOR' in request.META:
+            ip = request.META.get('HTTP_X_FORWARDED_FOR')
+        else:
+            ip = self.request.META['REMOTE_ADDR']
+        print(ip)
         post = Post.objects.get(slug=self.kwargs.get("slug"))
         ViewingRecord(post=post, source=ip).save()
         return super().get(request, *args, **kwargs)
