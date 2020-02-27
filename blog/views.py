@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
@@ -54,8 +55,13 @@ class PostDetailView(DetailView):
             ip = request.META.get('HTTP_X_FORWARDED_FOR')
         else:
             ip = self.request.META['REMOTE_ADDR']
-        post = Post.objects.get(slug=self.kwargs.get("slug"))
-        ViewingRecord(post=post, source=ip).save()
+
+        try:
+            post = Post.objects.get(slug=self.kwargs.get("slug"))
+            ViewingRecord(post=post, source=ip).save()
+        except ObjectDoesNotExist:
+            # TODO: Handle this and log
+            pass
         return super().get(request, *args, **kwargs)
 
 

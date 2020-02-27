@@ -2,10 +2,16 @@
 {% load crispy_forms_tags %}
 {% load markdown_extras %}
 
+{% block javascript %}
+  <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+<script>
+let simplemde = new SimpleMDE();
+</script>
+{% endblock %}
 
 {% block content %}
     <div class="content-section">
-        <form method="POST">
+        <form method="POST" novalidate>
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Blog Post</legend>

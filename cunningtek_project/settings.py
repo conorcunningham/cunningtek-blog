@@ -134,8 +134,8 @@ DUMMY_CACHE = {
 
 PROD_CACHE = {
     "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-        # "BACKEND": "redis_cache.RedisCache",
+        #"BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "BACKEND": "redis_cache.RedisCache",
         "LOCATION": "redis://172.17.0.1:6379",
     },
 }
