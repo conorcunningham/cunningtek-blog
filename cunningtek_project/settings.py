@@ -24,7 +24,6 @@ DEBUG = int(os.environ.get('DEBUG', default='0'))
 # DEBUG = True
 PRODUCTION = True if not DEBUG else False
 ALLOWED_HOSTS = ['*'] if DEBUG else ['blog.conorcunningham.net']
-DEBUG=True
 
 
 # Application definition
