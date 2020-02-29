@@ -1,4 +1,3 @@
-
 from django.contrib import admin
 from django.contrib.sitemaps import GenericSitemap
 from django.contrib.sitemaps.views import sitemap
@@ -23,11 +22,10 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('accounts/', include('allauth.urls')),
     path('accounts/', include('users.urls')),
-    path('sitemap.xml', sitemap,  # new
+    path('sitemap.xml', sitemap,
          {'sitemaps': {'blog': GenericSitemap(post_dict, priority=0.6)}},
          name='django.contrib.sitemaps.views.sitemap'),
 ]
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
