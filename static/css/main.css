@@ -94,6 +94,13 @@ p {
     background-color: #5f788a;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 .site-header .navbar-nav .nav-link {
     color: #cbd5db;
 }
