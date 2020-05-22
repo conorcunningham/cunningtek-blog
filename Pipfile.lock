@@ -25,10 +25,10 @@
         },
         "asgiref": {
             "hashes": [
-                "sha256:5e60ea919b37e5b9d8896d802c0dbbe41b16ea6719e5695a43496ef43e5b19ac",
-                "sha256:f07043512078c76bb28a62fd1e327876599062b5f0aea60ed1d9cabc42e95fe2"
+                "sha256:8036f90603c54e93521e5777b2b9a39ba1bad05773fcf2d208f0299d1df58ce5",
+                "sha256:9ca8b952a0a9afa61d30aa6d3d9b570bb3fd6bafcf7ec9e6bed43b936133db1c"
             ],
-            "version": "==3.2.4"
+            "version": "==3.2.7"
         },
         "attrs": {
             "hashes": [
@@ -47,11 +47,11 @@
         },
         "bleach": {
             "hashes": [
-                "sha256:44f69771e2ac81ff30d929d485b7f9919f3ad6d019b6b20c74f3b8687c3f70df",
-                "sha256:aa8b870d0f46965bac2c073a93444636b0e1ca74e9777e34f03dd494b8a59d48"
+                "sha256:cc8da25076a1fe56c3ac63671e2194458e0c4d9c7becfd52ca251650d517903c",
+                "sha256:e78e426105ac07026ba098f04de8abe9b6e3e98b5befbf89b51a5ef0a4292b03"
             ],
             "index": "pypi",
-            "version": "==3.1.1"
+            "version": "==3.1.4"
         },
         "boto3": {
             "hashes": [
@@ -63,10 +63,10 @@
         },
         "botocore": {
             "hashes": [
-                "sha256:2f1a54e19531bdf2d953c2db5f76b49c6936565366b2503a528b04cbbf55671a",
-                "sha256:9827c6f3bffb9e316427c276e3f22e5d82b377dd43dcbbbe71ecbd9ac2b959ab"
+                "sha256:3ea89601ee452b65084005278bd832be854cfde5166685dcb14b6c8f19d3fc6d",
+                "sha256:a963af564d94107787ff3d2c534e8b7aed7f12e014cdd609f8fcb17bf9d9b19a"
             ],
-            "version": "==1.15.18"
+            "version": "==1.15.32"
         },
         "certifi": {
             "hashes": [
@@ -185,9 +185,10 @@
         },
         "hstspreload": {
             "hashes": [
-                "sha256:5f120aa14869019e547166d5d3efa7f40dc5569bf830b130e5ba8bdef5bc9d5a"
+                "sha256:0aa4c2ebb768a11109f4d2008b3fce987adaef2de584b93a48756847ec84403c",
+                "sha256:e6b87847b1250c30e67bf68925d5e78b987d4be3fb61f921cdcd8ccea7dd4342"
             ],
-            "version": "==2020.3.4"
+            "version": "==2020.3.31"
         },
         "httpx": {
             "hashes": [
