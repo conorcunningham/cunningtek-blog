@@ -11,3 +11,4 @@ pycache
 ~case1.xlsx
 temp
 temp.py
+.env
