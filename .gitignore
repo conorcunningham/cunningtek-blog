@@ -12,3 +12,4 @@ pycache
 temp
 temp.py
 .env
+/.venv/
