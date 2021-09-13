@@ -21,7 +21,7 @@ services:
       - DEBUG=1
 
   blog-db:
-    image: postgres:11
+    image: postgres:13
     volumes:
       - blog_data:/var/lib/postgresql/data/
     ports:
